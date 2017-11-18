@@ -31,11 +31,7 @@
             <version>${project.version}</version>
         </dependency>
         <!--订单模块-->
-        <dependency>
-            <groupId>com.hzit.qmall</groupId>
-            <artifactId>qmall_order</artifactId>
-            <version>${project.version}</version>
-        </dependency>
+       
 
 
         
