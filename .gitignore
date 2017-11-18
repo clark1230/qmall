@@ -1,0 +1,16 @@
+# Created by .ignore support plugin (hsz.mobi)
+/qmall.iml
+/qmall.ipr
+/qmall.iws
+/qmall_web/qmall_web.iml
+/qmall_user/src/test/
+/qmall_user/qmall_user.iml
+/qmall_web/src/test/
+/qmall_system_web/qmall_system_web.iml
+/qmall_system_web/src/test/
+/qmall_order/qmall_order.iml
+/qmall_order/src/test/
+/qmall_goods/qmall_goods.iml
+/qmall_goods/src/test/
+/qmall_common/qmall_common.iml
+/qmall_common/src/test/
