@@ -15,6 +15,8 @@
         <module>qmall_web</module>
         <module>qmall_common</module>
         <module>qmall_order</module>
+        <module>qmall_search</module>
+        <module>qmall_payment</module>
     </modules>
     <properties>
         <spring.version>4.3.10.RELEASE</spring.version>

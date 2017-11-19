@@ -1,5 +1,6 @@
 package com.qmall.controller.user;
 
+import com.qmall.annotation.SystemLog;
 import com.qmall.user.system.entity.User;
 import com.qmall.user.system.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,9 +13,11 @@ public class UserController {
     @Autowired
     private IUserService iUserService;
 
+
+    @SystemLog(module = "user",method = "addUser",msg = "跳转到添加用户页面")
     @RequestMapping(value="addUser")
     @ResponseBody
     public String addUser(User user){
-        return  iUserService.add(user)+"";
+        return  "1";//iUserService.add(user)+"";
     }
 }

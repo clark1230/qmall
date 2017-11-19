@@ -6,7 +6,7 @@
     <!---配置spring 容器-->
      <context-param>
          <param-name>contextConfigLocation</param-name>
-         <param-value>classpath:spring_user.xml</param-value>
+         <param-value>classpath:applicationContext.xml</param-value>
      </context-param>
     <!--配置spring的监听器-->
     <listener>

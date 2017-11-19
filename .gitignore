@@ -15,3 +15,9 @@
 /qmall_common/qmall_common.iml
 /qmall_common/src/test/
 
+/qmall_system_web/target/
+/qmall_search/qmall_search.iml
+/qmall_search/src/test/
+/qmall_payment/qmall_payment.iml
+/qmall_payment/src/test/
+/qmall_user/target/
