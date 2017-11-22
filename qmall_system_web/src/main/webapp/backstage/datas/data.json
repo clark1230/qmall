@@ -174,16 +174,16 @@
 	"children": [{
 		"id": "6",
 		"pid": "0",
-		"title": "网站管理",
+		"title": "商品管理",
 		"icon": "&#xea0e;",
 		"url": "",
 		"spread": true,
 		"children": [{
 			"id": "7",
 			"pid": "0",
-			"title": "网站栏目管理",
+			"title": "品牌管理",
 			"icon": "&#xe8c1;",
-			"url": "html/temp.html",
+			"url": "/brand/brand.action",
 			"spread": false
 		}, {
 			"id": "8",

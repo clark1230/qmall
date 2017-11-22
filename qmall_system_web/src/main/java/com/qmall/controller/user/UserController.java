@@ -1,7 +1,7 @@
 package com.qmall.controller.user;
 
 import com.qmall.annotation.SystemLog;
-import com.qmall.user.system.entity.User;
+import com.qmall.user.entity.User;
 import com.qmall.user.system.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

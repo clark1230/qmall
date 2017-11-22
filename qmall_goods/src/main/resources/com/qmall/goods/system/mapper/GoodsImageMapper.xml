@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.qmall.goods.system.mapper.GoodsImageMapper">
+
+    <sql id="tbGoodsImageBaseColumnSql">
+        image_id,
+        goods_id,
+        big_img_path,
+        small_img_path,
+        is_cover,
+        create_by,
+        create_time,
+        update_by,
+        update_time,
+        status
+    </sql>
+
+    <sql id="tbGoodsImageBaseWhereSql">
+        <if test="map!=null">
+            <where>
+                <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty(map.imageId)">
+                    image_id = #{map.imageId}
+                </if>
+                <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty(map.goodsId)">
+                    AND goods_id = #{map.goodsId}
+                </if>
+                <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty(map.bigImgPath)">
+                    AND big_img_path = #{map.bigImgPath}
+                </if>
+                <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty(map.smallImgPath)">
+                    AND small_img_path = #{map.smallImgPath}
+                </if>
+                <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty(map.isCover)">
+                    AND is_cover = #{map.isCover}
+                </if>
+                <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty(map.createBy)">
+                    AND create_by = #{map.createBy}
+                </if>
+                <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty(map.createTime)">
+                    AND create_time = #{map.createTime}
+                </if>
+                <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty(map.updateBy)">
+                    AND update_by = #{map.updateBy}
+                </if>
+                <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty(map.updateTime)">
+                    AND update_time = #{map.updateTime}
+                </if>
+                <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty(map.status)">
+                    AND status = #{map.status}
+                </if>
+            </where>
+        </if>
+    </sql>
+
+    <insert id="insertTbGoodsImage" parameterType="com.qmall.goods.entity.GoodsImages">
+        INSERT INTO tb_goods_images(
+        <include refid="tbGoodsImageBaseColumnSql"/>
+        )VALUES(
+            #{imageId},
+            #{goodsId},
+            #{bigImgPath},
+            #{smallImgPath},
+            #{isCover},
+            #{createBy},
+            #{createTime},
+            #{updateBy},
+            #{updateTime},
+            #{status}
+        )
+    </insert>
+
+    
+    <delete id="deleteTbGoodsImageByImageId" parameterType="Integer">
+        DELETE FROM tb_goods_images WHERE image_id = #{imageId}
+    </delete>
+
+    <update id="updateTbGoodsImage" parameterType="com.qmall.goods.entity.GoodsImages">
+        UPDATE tb_goods_images
+        <set>
+            <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty(goodsId)">
+                goods_id = #{goodsId} ,
+            </if>
+            <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty(bigImgPath)">
+                big_img_path = #{bigImgPath} ,
+            </if>
+            <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty(smallImgPath)">
+                small_img_path = #{smallImgPath} ,
+            </if>
+            <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty(isCover)">
+                is_cover = #{isCover} ,
+            </if>
+            <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty(createBy)">
+                create_by = #{createBy} ,
+            </if>
+            <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty(createTime)">
+                create_time = #{createTime} ,
+            </if>
+            <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty(updateBy)">
+                update_by = #{updateBy} ,
+            </if>
+            <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty(updateTime)">
+                update_time = #{updateTime} ,
+            </if>
+            <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty(status)">
+                status = #{status} ,
+            </if>
+        </set>
+        WHERE image_id = #{imageId}
+    </update>
+
+    <select id="searchTbGoodsImageByParams" parameterType="map" resultMap="tbGoodsImageMap">
+        SELECT
+        <include refid="tbGoodsImageBaseColumnSql"/>
+        FROM tb_goods_images
+        <include refid="tbGoodsImageBaseWhereSql"/>
+    </select>
+
+    <resultMap type="com.qmall.goods.entity.GoodsImages" id="tbGoodsImageMap">
+        <id column="image_id" property="imageId"/>
+        <result column="goods_id" property="goodsId"/>
+        <result column="big_img_path" property="bigImgPath"/>
+        <result column="small_img_path" property="smallImgPath"/>
+        <result column="is_cover" property="isCover"/>
+        <result column="create_by" property="createBy"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_by" property="updateBy"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="status" property="status"/>
+    </resultMap>
+
+</mapper>

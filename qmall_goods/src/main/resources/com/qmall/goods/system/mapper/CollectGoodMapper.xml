@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.qmall.goods.system.mapper.CollectGoodMapper">
+
+    <sql id="tbCollectGoodBaseColumnSql">
+        col_id,
+        user_id,
+        user_name,
+        goods_id,
+        goods_thumb,
+        col_time,
+        is_attention
+    </sql>
+
+    <sql id="tbCollectGoodBaseWhereSql">
+        <if test="map!=null">
+            <where>
+                <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty(map.colId)">
+                    col_id = #{map.colId}
+                </if>
+                <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty(map.userId)">
+                    AND user_id = #{map.userId}
+                </if>
+                <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty(map.userName)">
+                    AND user_name = #{map.userName}
+                </if>
+                <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty(map.goodsId)">
+                    AND goods_id = #{map.goodsId}
+                </if>
+                <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty(map.goodsThumb)">
+                    AND goods_thumb = #{map.goodsThumb}
+                </if>
+                <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty(map.colTime)">
+                    AND col_time = #{map.colTime}
+                </if>
+                <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty(map.isAttention)">
+                    AND is_attention = #{map.isAttention}
+                </if>
+            </where>
+        </if>
+    </sql>
+
+    <insert id="addCollectGoods" parameterType="com.qmall.goods.entity.CollectGood">
+        INSERT INTO tb_collect_goods(
+        <include refid="tbCollectGoodBaseColumnSql"/>
+        )VALUES(
+            #{colId},
+            #{userId},
+            #{userName},
+            #{goodsId},
+            #{goodsThumb},
+            #{colTime},
+            #{isAttention}
+        )
+    </insert>
+
+    
+    <delete id="deleteByColId" parameterType="Integer">
+        DELETE FROM tb_collect_goods WHERE col_id = #{colId}
+    </delete>
+
+    <update id="updateCollectGoods" parameterType="com.qmall.goods.entity.CollectGood">
+        UPDATE tb_collect_goods
+        <set>
+            <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty(userId)">
+                user_id = #{userId} ,
+            </if>
+            <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty(userName)">
+                user_name = #{userName} ,
+            </if>
+            <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty(goodsId)">
+                goods_id = #{goodsId} ,
+            </if>
+            <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty(goodsThumb)">
+                goods_thumb = #{goodsThumb} ,
+            </if>
+            <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty(colTime)">
+                col_time = #{colTime} ,
+            </if>
+            <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty(isAttention)">
+                is_attention = #{isAttention} ,
+            </if>
+        </set>
+        WHERE col_id = #{colId}
+    </update>
+
+    <select id="searcgCollGoods" parameterType="map" resultMap="tbCollectGoodMap">
+        SELECT
+        <include refid="tbCollectGoodBaseColumnSql"/>
+        FROM tb_collect_goods
+        <include refid="tbCollectGoodBaseWhereSql"/>
+    </select>
+
+    <resultMap type="com.qmall.goods.entity.CollectGood" id="tbCollectGoodMap">
+        <id column="col_id" property="colId"/>
+        <result column="user_id" property="userId"/>
+        <result column="user_name" property="userName"/>
+        <result column="goods_id" property="goodsId"/>
+        <result column="goods_thumb" property="goodsThumb"/>
+        <result column="col_time" property="colTime"/>
+        <result column="is_attention" property="isAttention"/>
+    </resultMap>
+
+</mapper>

@@ -8,7 +8,7 @@
         user_name
     </sql>
      <!--添加用户信息-->
-    <insert id="insertTbUser" parameterType="com.qmall.user.system.entity.User">
+    <insert id="insertTbUser" parameterType="com.qmall.user.entity.User">
         INSERT INTO tb_user(
         <include refid="tbUserBaseColumnSql"/>
         )VALUES(

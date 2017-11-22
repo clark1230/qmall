@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.qmall.goods.system.mapper.GoodsMapper">
+
+    <sql id="tbGoodBaseColumnSql">
+        goods_id,
+        cat_id,
+        goods_cn,
+        goods_name,
+        click_count,
+        brand_id,
+        numberr,
+        price,
+        status,
+        other_attr,
+        goods_thumb
+    </sql>
+
+    <sql id="tbGoodBaseWhereSql">
+        <if test="map!=null">
+            <where>
+                <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty(map.goodsId)">
+                    goods_id = #{map.goodsId}
+                </if>
+                <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty(map.catId)">
+                    AND cat_id = #{map.catId}
+                </if>
+                <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty(map.goodsCn)">
+                    AND goods_cn = #{map.goodsCn}
+                </if>
+                <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty(map.goodsName)">
+                    AND goods_name = #{map.goodsName}
+                </if>
+                <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty(map.clickCount)">
+                    AND click_count = #{map.clickCount}
+                </if>
+                <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty(map.brandId)">
+                    AND brand_id = #{map.brandId}
+                </if>
+                <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty(map.numberr)">
+                    AND numberr = #{map.numberr}
+                </if>
+                <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty(map.price)">
+                    AND price = #{map.price}
+                </if>
+                <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty(map.status)">
+                    AND status = #{map.status}
+                </if>
+                <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty(map.otherAttr)">
+                    AND other_attr = #{map.otherAttr}
+                </if>
+                <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty(map.goodsThumb)">
+                    AND goods_thumb = #{map.goodsThumb}
+                </if>
+            </where>
+        </if>
+    </sql>
+
+    <insert id="insertTbGood" parameterType="com.qmall.goods.entity.Goods">
+        INSERT INTO tb_goods(
+        <include refid="tbGoodBaseColumnSql"/>
+        )VALUES(
+        #{goodsId},
+        #{catId},
+        #{goodsCn},
+        #{goodsName},
+        #{clickCount},
+        #{brandId},
+        #{numberr},
+        #{price},
+        #{status},
+        #{otherAttr},
+        #{goodsThumb}
+        )
+    </insert>
+
+
+    <delete id="deleteTbGoodByGoodsId" parameterType="Integer">
+        DELETE FROM tb_goods WHERE goods_id = #{goodsId}
+    </delete>
+
+    <update id="updateTbGood" parameterType="com.qmall.goods.entity.Goods">
+        UPDATE tb_goods
+        <set>
+            <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty(catId)">
+                cat_id = #{catId} ,
+            </if>
+            <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty(goodsCn)">
+                goods_cn = #{goodsCn} ,
+            </if>
+            <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty(goodsName)">
+                goods_name = #{goodsName} ,
+            </if>
+            <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty(clickCount)">
+                click_count = #{clickCount} ,
+            </if>
+            <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty(brandId)">
+                brand_id = #{brandId} ,
+            </if>
+            <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty(numberr)">
+                numberr = #{numberr} ,
+            </if>
+            <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty(price)">
+                price = #{price} ,
+            </if>
+            <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty(status)">
+                status = #{status} ,
+            </if>
+            <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty(otherAttr)">
+                other_attr = #{otherAttr} ,
+            </if>
+            <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty(goodsThumb)">
+                goods_thumb = #{goodsThumb} ,
+            </if>
+        </set>
+        WHERE goods_id = #{goodsId}
+    </update>
+
+    <select id="searchTbGoodByParams" parameterType="map" resultMap="tbGoodMap">
+        SELECT
+        <include refid="tbGoodBaseColumnSql"/>
+        FROM tb_goods
+        <include refid="tbGoodBaseWhereSql"/>
+    </select>
+
+    <resultMap type="com.qmall.goods.entity.Goods" id="tbGoodMap">
+        <id column="goods_id" property="goodsId"/>
+        <result column="cat_id" property="catId"/>
+        <result column="goods_cn" property="goodsCn"/>
+        <result column="goods_name" property="goodsName"/>
+        <result column="click_count" property="clickCount"/>
+        <result column="brand_id" property="brandId"/>
+        <result column="numberr" property="numberr"/>
+        <result column="price" property="price"/>
+        <result column="status" property="status"/>
+        <result column="other_attr" property="otherAttr"/>
+        <result column="goods_thumb" property="goodsThumb"/>
+    </resultMap>
+
+</mapper>

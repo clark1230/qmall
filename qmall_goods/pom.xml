@@ -12,10 +12,48 @@
     <artifactId>qmall_goods</artifactId>
 
      <dependencies>
+         <!--公共模块-->
          <dependency>
              <groupId>com.hzit.qmall</groupId>
              <artifactId>qmall_common</artifactId>
              <version>1.0-SNAPSHOT</version>
+         </dependency>
+         <!--junit单元测试-->
+         <dependency>
+             <groupId>junit</groupId>
+             <artifactId>junit</artifactId>
+             <version>4.12</version>
+         </dependency>
+
+         <!-- spring test -->
+         <dependency>
+             <groupId>org.springframework</groupId>
+             <artifactId>spring-test</artifactId>
+             <version>${spring.version}</version>
+             <scope>test</scope>
+         </dependency>
+         <!-- mysql驱动包 -->
+         <dependency>
+             <groupId>mysql</groupId>
+             <artifactId>mysql-connector-java</artifactId>
+             <version>5.1.38</version>
+         </dependency>
+         <!-- commons-lang3 工具包-->
+         <dependency>
+             <groupId>org.apache.commons</groupId>
+             <artifactId>commons-lang3</artifactId>
+             <version>3.4</version>
+         </dependency>
+         <!-- pagehelper分页插件 -->
+         <dependency>
+             <groupId>com.github.pagehelper</groupId>
+             <artifactId>pagehelper</artifactId>
+             <version>5.0.1</version>
+         </dependency>
+         <dependency>
+             <groupId>com.github.jsqlparser</groupId>
+             <artifactId>jsqlparser</artifactId>
+             <version>1.0</version>
          </dependency>
      </dependencies>
 </project>

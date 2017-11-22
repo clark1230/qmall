@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.qmall.goods.system.mapper.BrandMapper">
+
+    <sql id="tbBrandBaseColumnSql">
+        brand_id,
+        brand_name,
+        brand_logo,
+        brand_desc,
+        site_url,
+        sort_order,
+        is_show
+    </sql>
+
+    <sql id="tbBrandBaseWhereSql">
+        <if test="map!=null">
+            <where>
+                <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty(map.brandId)">
+                    brand_id = #{map.brandId}
+                </if>
+                <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty(map.brandName)">
+                    AND brand_name = #{map.brandName}
+                </if>
+                <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty(map.brandLogo)">
+                    AND brand_logo = #{map.brandLogo}
+                </if>
+                <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty(map.brandDesc)">
+                    AND brand_desc = #{map.brandDesc}
+                </if>
+                <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty(map.siteUrl)">
+                    AND site_url = #{map.siteUrl}
+                </if>
+                <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty(map.sortOrder)">
+                    AND sort_order = #{map.sortOrder}
+                </if>
+                <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty(map.isShow)">
+                    AND is_show = #{map.isShow}
+                </if>
+            </where>
+        </if>
+    </sql>
+
+    <insert id="addBrand" parameterType="com.qmall.goods.entity.Brand">
+        INSERT INTO tb_brand(
+        <include refid="tbBrandBaseColumnSql"/>
+        )VALUES(
+            #{brandId},
+            #{brandName},
+            #{brandLogo},
+            #{brandDesc},
+            #{siteUrl},
+            #{sortOrder},
+            #{isShow}
+        )
+    </insert>
+
+    
+    <delete id="deleteById" parameterType="Integer">
+        DELETE FROM tb_brand WHERE brand_id = #{brandId}
+    </delete>
+
+    <update id="updateBrand" parameterType="com.qmall.goods.entity.Brand">
+        UPDATE tb_brand
+        <set>
+            <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty(brandName)">
+                brand_name = #{brandName} ,
+            </if>
+            <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty(brandLogo)">
+                brand_logo = #{brandLogo} ,
+            </if>
+            <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty(brandDesc)">
+                brand_desc = #{brandDesc} ,
+            </if>
+            <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty(siteUrl)">
+                site_url = #{siteUrl} ,
+            </if>
+            <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty(sortOrder)">
+                sort_order = #{sortOrder} ,
+            </if>
+            <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty(isShow)">
+                is_show = #{isShow} ,
+            </if>
+        </set>
+        WHERE brand_id = #{brandId}
+    </update>
+
+    <select id="searchTbBrandByParams" parameterType="map" resultMap="tbBrandMap">
+        SELECT
+        <include refid="tbBrandBaseColumnSql"/>
+        FROM tb_brand
+        <include refid="tbBrandBaseWhereSql"/>
+    </select>
+
+    <resultMap type="com.qmall.goods.entity.Brand" id="tbBrandMap">
+        <id column="brand_id" property="brandId"/>
+        <result column="brand_name" property="brandName"/>
+        <result column="brand_logo" property="brandLogo"/>
+        <result column="brand_desc" property="brandDesc"/>
+        <result column="site_url" property="siteUrl"/>
+        <result column="sort_order" property="sortOrder"/>
+        <result column="is_show" property="isShow"/>
+    </resultMap>
+
+</mapper>

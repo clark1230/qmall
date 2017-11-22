@@ -64,7 +64,7 @@ layui.use(['jquery','layer','element','common','larryMenu','form'],function(){
 		}, {
 			text: "检查元素(F12)",
 		    func: function() {
-			    common.larryCmsError('抱歉！暂不支持此功能，可加入LarryCMS交流群下载源码',common.larryCore.tit);
+			    common.larryCmsError('抱歉！暂不支持此功能！',common.larryCore.tit);
 		    }
 		}],
 		[{

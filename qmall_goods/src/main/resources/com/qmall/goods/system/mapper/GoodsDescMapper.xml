@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.qmall.goods.system.mapper.GoodsDescMapper">
+
+    <sql id="tbGoodsDescBaseColumnSql">
+        goods_id,
+        goods_desc,
+        create_time,
+        update_time
+    </sql>
+
+    <sql id="tbGoodsDescBaseWhereSql">
+        <if test="map!=null">
+            <where>
+                <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty(map.goodsId)">
+                    goods_id = #{map.goodsId}
+                </if>
+                <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty(map.goodsDesc)">
+                    AND goods_desc = #{map.goodsDesc}
+                </if>
+                <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty(map.createTime)">
+                    AND create_time = #{map.createTime}
+                </if>
+                <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty(map.updateTime)">
+                    AND update_time = #{map.updateTime}
+                </if>
+            </where>
+        </if>
+    </sql>
+
+    <insert id="insertTbGoodsDesc" parameterType="com.qmall.goods.entity.GoodsDesc">
+        INSERT INTO tb_goods_desc(
+        <include refid="tbGoodsDescBaseColumnSql"/>
+        )VALUES(
+            #{goodsId},
+            #{goodsDesc},
+            #{createTime},
+            #{updateTime}
+        )
+    </insert>
+
+    
+    <delete id="deleteTbGoodsDescByGoodsId" parameterType="Integer">
+        DELETE FROM tb_goods_desc WHERE goods_id = #{goodsId}
+    </delete>
+
+    <update id="updateTbGoodsDesc" parameterType="com.qmall.goods.entity.GoodsDesc">
+        UPDATE tb_goods_desc
+        <set>
+            <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty(goodsDesc)">
+                goods_desc = #{goodsDesc} ,
+            </if>
+            <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty(createTime)">
+                create_time = #{createTime} ,
+            </if>
+            <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty(updateTime)">
+                update_time = #{updateTime} ,
+            </if>
+        </set>
+        WHERE goods_id = #{goodsId}
+    </update>
+
+    <select id="searchTbGoodsDescByParams" parameterType="map" resultMap="tbGoodsDescMap">
+        SELECT
+        <include refid="tbGoodsDescBaseColumnSql"/>
+        FROM tb_goods_desc
+        <include refid="tbGoodsDescBaseWhereSql"/>
+    </select>
+
+    <resultMap type="com.qmall.goods.entity.GoodsDesc" id="tbGoodsDescMap">
+        <id column="goods_id" property="goodsId"/>
+        <result column="goods_desc" property="goodsDesc"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+    </resultMap>
+
+</mapper>

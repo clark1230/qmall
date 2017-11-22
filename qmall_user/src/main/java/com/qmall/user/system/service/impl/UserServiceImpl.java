@@ -1,6 +1,6 @@
 package com.qmall.user.system.service.impl;
 
-import com.qmall.user.system.entity.User;
+import com.qmall.user.entity.User;
 import com.qmall.user.system.mapper.UserMapper;
 import com.qmall.user.system.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;

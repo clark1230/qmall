@@ -1,6 +1,6 @@
 package com.qmall.user.system.mapper;
 
-import com.qmall.user.system.entity.User;
+import com.qmall.user.entity.User;
 
 /**
  *  用户表映射文件

@@ -1,7 +1,7 @@
 package com.qmall.aspects;
 
 import com.qmall.annotation.SystemLog;
-import com.qmall.user.system.entity.LogEntity;
+import com.qmall.user.entity.LogEntity;
 import com.qmall.util.IPUtil;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.Signature;

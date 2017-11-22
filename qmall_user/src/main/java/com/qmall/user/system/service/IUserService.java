@@ -1,6 +1,6 @@
 package com.qmall.user.system.service;
 
-import com.qmall.user.system.entity.User;
+import com.qmall.user.entity.User;
 
 public interface IUserService extends  IBaseService<User> {
 }
